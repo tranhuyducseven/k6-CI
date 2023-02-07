@@ -18,6 +18,7 @@ jobs:
       with:
         filename: concreteAI.js
         cloud: true
+        flags: --out json=k6TestingOutput.json
         token: 5958842b15300563ac572bf8d5671f2d755d9aefb8b4440f6d5d6fced72887cb
 
     - name: Upload performance test results
