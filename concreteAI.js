@@ -1,5 +1,6 @@
 import { sleep } from "k6";
 import http from "k6/http";
+import { textSummary } from 'https://jslib.k6.io/k6-summary/0.0.2/index.js';
 
 function defaultScenarioConfig(executor) {
   return {
@@ -174,10 +175,11 @@ export function viewStructureStatus() {
   sleep(1);
 }
 
-export default function main() {
-  console.log("log");
-  console.debug("debug");
-  console.info("info");
-  console.warn("warn");
-  console.error("error");
+export function handleSummary(data) {
+  console.log("Preparing the end-of-test summary...");
+
+  return {
+    stdout: textSummary(data, { indent: " ", enableColors: true }), // Show the text summary to stdout...
+    "k6TestingOutput.json": JSON.stringify(data), // and a JSON with all the details...
+  };
 }
