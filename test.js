@@ -2,8 +2,6 @@ import { sleep } from 'k6'
 import http from 'k6/http'
 
 export const options = {
-  duration: '3m',
-  vus: 50,
   ext: {
     loadimpact: {
       distribution: { 'amazon:sg:singapore': { loadZone: 'amazon:sg:singapore', percent: 100 } },
@@ -12,7 +10,7 @@ export const options = {
   },
   thresholds: {},
   scenarios: {
-    Scenario_1: {
+    Overviews: {
       executor: 'ramping-vus',
       gracefulStop: '30s',
       stages: [
@@ -21,12 +19,12 @@ export const options = {
         { target: 0, duration: '1m' },
       ],
       gracefulRampDown: '30s',
-      exec: 'scenario_1',
+      exec: 'overviews',
     },
   },
 }
 
-export function scenario_1() {
+export function overviews() {
   let response
 
   // Sign-in
