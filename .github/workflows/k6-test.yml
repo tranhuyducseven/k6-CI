@@ -25,7 +25,7 @@ jobs:
         name: k6-report
         path: k6TestingOutput.json
 
-        - name: Upload summary
+    - name: Upload summary
       uses: actions/upload-artifact@v4
       with:
         name: cai-summary
