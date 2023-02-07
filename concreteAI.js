@@ -1,7 +1,7 @@
 import { sleep } from "k6";
 import http from "k6/http";
-import { textSummary } from 'https://jslib.k6.io/k6-summary/0.0.2/index.js';
-import { Counter } from 'k6/metrics';
+import { textSummary } from "https://jslib.k6.io/k6-summary/0.0.2/index.js";
+import { Counter } from "k6/metrics";
 
 function defaultScenarioConfig(executor) {
   return {
@@ -39,8 +39,8 @@ export const options = {
 };
 
 let summary = null;
-const signInDurationCounter = new Counter('signInDurationCounter');
-const overviewsDurationCounter = new Counter('signInDurationCounter');
+const signInDurationCounter = new Counter("signInDurationCounter");
+const overviewsDurationCounter = new Counter("signInDurationCounter");
 
 export function overviews() {
   let response;
@@ -56,21 +56,22 @@ export function overviews() {
     }
   );
 
-  signInDurationCounter.add(response.timings.duration)
+  signInDurationCounter.add(response.timings.duration);
   // Overview
   response = http.get(
     "https://be-concrete-dev.wearedevin.com/api/overviews/castings"
   );
 
-  overviewsDurationCounter.add(response.timings.duration)
-
-
+  overviewsDurationCounter.add(response.timings.duration);
 
   // Automatically added sleep
   sleep(1);
 }
-summary = {...summary, overviews: overviewsDurationCounter.add(0), signIn: signInDurationCounter.add(0)}
 
+summary = {
+  overviews: overviewsDurationCounter.add(0),
+  signIn: signInDurationCounter.add(0),
+};
 
 export function updateConcreteMix() {
   let response;
