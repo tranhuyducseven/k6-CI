@@ -30,3 +30,8 @@ jobs:
       with:
         name: cai-summary
         path: summary.json
+    - name: Upload analysis
+      uses: actions/setup-node@v3
+      with: 
+        node-version: '12.x'
+    - run: node analysis.js

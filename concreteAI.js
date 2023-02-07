@@ -177,7 +177,6 @@ export function viewStructureStatus() {
 
 export function handleSummary(_) {
   console.log("Preparing the end-of-test summary...");
-
   return {
     "summary.json": textSummary(summary, { indent: " ", enableColors: true }), // Show the text summary to stdout...
   };
