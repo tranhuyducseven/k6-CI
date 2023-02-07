@@ -19,7 +19,8 @@ jobs:
         filename: concreteAI.js
         cloud: true
         token: 587b1c3d66beba6f25726cd08206de32d68d5b48a38e70c24e000fbe69f4a2f9
-        flags: --out json=results.json
+        flags: --out json=k6TestingOutput.json
+
     - name: Upload performance test results
       uses: actions/upload-artifact@v3
       with:
