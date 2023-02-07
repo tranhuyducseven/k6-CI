@@ -175,9 +175,11 @@ export function viewStructureStatus() {
   sleep(1);
 }
 
-export function handleSummary(_) {
-  console.log("Preparing the end-of-test summary...");
+export function handleSummary(data) {
+  console.log('Finished executing performance tests');
+
   return {
-    "summary.json": textSummary(summary, { indent: " ", enableColors: true }), // Show the text summary to stdout...
+    'stdout': textSummary(data, { indent: ' ', enableColors: true }), // Show the text summary to stdout...
+    'summary.json': JSON.stringify(data), // and a JSON with all the details...
   };
 }

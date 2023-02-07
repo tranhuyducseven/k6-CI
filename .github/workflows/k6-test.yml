@@ -17,7 +17,7 @@ jobs:
       uses: grafana/k6-action@v0.2.0
       with:
         filename: concreteAI.js
-        flags: --out json=k6TestingOutput.json
+        flags: --summary-trend-stats="med" --out json=k6TestingOutput.json
 
     - name: Upload performance test results
       uses: actions/upload-artifact@v3
@@ -30,8 +30,3 @@ jobs:
       with:
         name: cai-summary
         path: summary.json
-    - name: Upload analysis
-      uses: actions/setup-node@v3
-      with: 
-        node-version: '12.x'
-    - run: node analysis.js
