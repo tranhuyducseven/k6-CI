@@ -13,12 +13,18 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v1
 
-    - name: Run local k6 test
+    - name: Run cloud k6 test
       uses: grafana/k6-action@v0.2.0
       with:
-        filename: test.js
+        filename: concreteAI.js
         cloud: true
         token: 587b1c3d66beba6f25726cd08206de32d68d5b48a38e70c24e000fbe69f4a2f9
+        flags: --out json=results.json
+    - name: Upload performance test results
+      uses: actions/upload-artifact@v3
+      with:
+        name: k6-report
+        path: k6TestingOutput.json
 
 
   
